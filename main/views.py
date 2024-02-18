@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Voter, Stall
+import json
 
 def landing_page(request):
     if request.method == 'POST':
@@ -22,7 +23,8 @@ def voting_page(request):
     voter = Voter.objects.get(pk=voter_id)
 
     if request.method == 'POST':
-        selected_stalls = request.POST.getlist('selected_stalls')
+        selected_stalls_str = request.POST.get('selected_stalls')
+        selected_stalls = json.loads(selected_stalls_str)
         selected_stalls = [int(stall) for stall in selected_stalls]
         voter.selected_stalls.add(*selected_stalls)
         for stall_num in selected_stalls:
