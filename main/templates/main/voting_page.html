@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voting Page</title>
+</head>
+<body>
+    <h1>Voting Page</h1>
+    <p>Please select your preferred stalls (You can select up to 5):</p>
+    <form method="post">
+        {% csrf_token %}
+        {% for stall in stalls %}
+            <input type="checkbox" name="selected_stalls" value="{{ stall.stall_number }}"> Stall {{ stall.stall_number }}<br>
+        {% endfor %}
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

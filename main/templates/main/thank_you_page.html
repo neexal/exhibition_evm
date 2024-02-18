@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You Page</title>
+    <script>
+        setTimeout(function() {
+            window.location.href = "{% url 'landing_page' %}";
+        }, 1000); // Redirect after 1 second (1000 milliseconds)
+    </script>
+</head>
+<body>
+    <h1>Thank You!</h1>
+    <p>Your vote has been recorded.</p>
+    <p>Redirecting you to the landing page...</p>
+</body>
+</html>
