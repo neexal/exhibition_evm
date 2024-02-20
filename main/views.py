@@ -33,7 +33,6 @@ def voting_page(request):
             stall.save()
         return redirect('thank_you')
 
-    # Assuming you have a list of all stalls named 'stalls'
     stalls = Stall.objects.all()
     return render(request, 'main/voting_page.html', {'stalls': stalls})
 
