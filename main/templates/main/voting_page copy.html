@@ -13,16 +13,39 @@
         }
 
         .container {
-            width: 95%; /* Utilize 90% of screen width */
+            width: 90%; /* Utilize 90% of screen width */
             margin: 0 auto;
             padding: 20px;
-            min-height: 100vh; /* Ensure at least full viewport height */
+            height: 100vh; /* Fit all content within 100vh */
             display: flex;
             flex-direction: column; /* Stack elements vertically */
             justify-content: center;
             align-items: center;
             gap: 10px;
             overflow-y: auto; /* Enable vertical scrolling if needed */
+            position: relative; /* Make container relative for absolute positioning */
+        }
+
+        /* Left banner */
+        .left-banner {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 20%; /* Adjust width as needed */
+            height: 100%;
+            background-image: url('/static/main/images/placeholder.jpg'); /* Add your left banner image */
+            background-size: cover;
+        }
+
+        /* Right banner */
+        .right-banner {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 20%; /* Adjust width as needed */
+            height: 100%;
+            background-image: url('/static/main/images/placeholder.jpg'); /* Add your right banner image */
+            background-size: cover;
         }
 
         .stall-buttons {
@@ -61,14 +84,12 @@
             font-size:20px;
             color: #fff;
         }
-        .btnS{
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+
         .btn-submit {
-            text-align: center;
-            padding: 25px 50px; /* Adjust padding for larger size */
+            position: fixed;
+            bottom: 15px;
+            right:47%;
+            padding: 25px 80px; /* Adjust padding for larger size */
             font-size: 18px; /* Adjust font size for larger size */
             background-color: #28a745; /* Green color */
             color: #fff;
@@ -85,6 +106,8 @@
     </style>
 </head>
 <body>
+    <div class="left-banner"></div>
+    <div class="right-banner"></div>
     <div class="container">
         <h1 class="text-center mb-2">कोशी मेगा प्रदर्शनी-२०८०</h1>
         <h5 class="mb-2 text-center">कृपया आफ्नो मनपर्ने स्टलहरू चयन गर्नुहोस् (तपाईंले 5 सम्म चयन गर्न सक्नुहुन्छ):</h5>
@@ -97,9 +120,7 @@
                 {% endfor %}
             </div>
             <input type="hidden" name="selected_stalls">
-            <div class="div btnS">
-                <button type="submit" class="btn btn-submit mt-4">Submit</button>
-            </div>
+            <button type="submit" class="btn btn-submit mt-4">Submit</button>
         </form>
     </div>
 
