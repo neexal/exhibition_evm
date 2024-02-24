@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,47 +6,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Voting Page</title>
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="{% static 'main/css/bootstrap.min.css' %}">
     <style>
         body {
             font-family: Arial, sans-serif;
             background-color: #f8f9fa;
+            margin: 0; /* Remove default margin */
+            padding: 0; /* Remove default padding */
         }
 
         .container {
             width: 90%; /* Utilize 90% of screen width */
-            margin: 0 auto;
+            margin: 0 auto; /* Center the container horizontally */
             padding: 20px;
-            height: 100vh; /* Fit all content within 100vh */
+            min-height: 100vh; /* Ensure at least full viewport height */
             display: flex;
             flex-direction: column; /* Stack elements vertically */
             justify-content: center;
             align-items: center;
             gap: 10px;
-            overflow-y: auto; /* Enable vertical scrolling if needed */
             position: relative; /* Make container relative for absolute positioning */
         }
 
         /* Left banner */
-        .left-banner {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 20%; /* Adjust width as needed */
-            height: 100%;
-            background-image: url('/static/main/images/placeholder.jpg'); /* Add your left banner image */
-            background-size: cover;
-        }
-
-        /* Right banner */
+        .left-banner,
         .right-banner {
             position: absolute;
             top: 0;
-            right: 0;
             width: 20%; /* Adjust width as needed */
             height: 100%;
-            background-image: url('/static/main/images/placeholder.jpg'); /* Add your right banner image */
+            background-image: url('/static/main/images/placeholder.jpg'); /* Add your left and right banner images */
             background-size: cover;
+        }
+
+        .left-banner {
+            left: 0;
+        }
+
+        .right-banner {
+            right: 0;
         }
 
         .stall-buttons {
@@ -81,14 +81,15 @@
             top: 20px;
             right: 20px;
             background-color: #9c3e38;
-            font-size:20px;
+            font-size: 20px;
             color: #fff;
         }
-
+        .btnS{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
         .btn-submit {
-            position: fixed;
-            bottom: 15px;
-            right:47%;
             padding: 25px 80px; /* Adjust padding for larger size */
             font-size: 18px; /* Adjust font size for larger size */
             background-color: #28a745; /* Green color */
@@ -98,7 +99,7 @@
             cursor: pointer;
             transition: background-color 0.3s;
         }
-        
+
         .btn-submit:hover {
             background-color: #218838; /* Darker green on hover */
             color: #fff;
@@ -120,14 +121,20 @@
                 {% endfor %}
             </div>
             <input type="hidden" name="selected_stalls">
-            <button type="submit" class="btn btn-submit mt-4">Submit</button>
+            <div class="btnS">
+                <button type="submit" class="btn btn-submit mt-4">Submit</button>
+            </div>
         </form>
     </div>
 
-    <!-- Bootstrap JavaScript -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
+
+    <!-- Bootstrap JavaScript -->
+    <script src="{% static 'main/js/jquery.js' %}"></script>
+    <script src="{% static 'main/js/popper.min.js' %}"></script>
+    <script src="{% static 'main/js/bootstrap.min.js' %}"></script>
 
     <!-- Custom JavaScript -->
     <script>

@@ -9,8 +9,17 @@ class StallAdmin(admin.ModelAdmin):
 admin.site.register(Stall, StallAdmin)
 
 
-class VoterAdmin(admin.ModelAdmin):
-    list_display = ('voting_id', ) 
-    list_filter = ('voting_id',)  
+# class VoterAdmin(admin.ModelAdmin):
+#     list_display = ('voting_id', ) 
+#     list_filter = ('voting_id',)  
 
-admin.site.register(Voter, VoterAdmin)
+# admin.site.register(Voter, VoterAdmin)
+
+@admin.register(Voter)
+class VoterAdmin(admin.ModelAdmin):
+    list_display = ('voting_id', 'display_selected_stalls')  # Define the fields to display in the list view
+
+    def display_selected_stalls(self, obj):
+        return ", ".join([str(stall.stall_number) for stall in obj.selected_stalls.all()])  # Display selected stalls as a comma-separated list
+
+    display_selected_stalls.short_description = 'Selected Stalls'  # Set a custom column header for the selected stalls
